@@ -37,7 +37,7 @@ The startup chime reads the NVRAM variable `SystemAudioVolumeExtension` (2 bytes
 
 So BootVolume does this:
 
-1. **Measure.** When you set the chime volume, the app briefly sets the system volume to that value, reads the 2 bytes macOS writes, and restores your volume. Nothing is played, but audio that is already playing gets louder for 2–3 seconds. The format is undocumented, so the value is always measured on your Mac and never hard-coded.
+1. **Measure.** When you set the chime volume, the app mutes the output, briefly sets the system volume to that value, reads the 2 bytes macOS writes, clears the mute bit, and restores your volume and mute state. macOS still writes the volume while muted (it only sets the mute bit), so nothing becomes audible; audio that is already playing is muted for about 4 seconds. The format is undocumented, so the value is always measured on your Mac and never hard-coded.
 2. **Write at shutdown.** A root LaunchDaemon (`top.oodot.bootchime`) waits for shutdown. When launchd sends `SIGTERM`, it writes the measured value to `SystemAudioVolumeExtension`. It checks once after 0.5 s and writes again only if the value was overwritten.
 3. **Login.** The app sets the volume as soon as it starts, and again after 1, 3 and 6 seconds.
 

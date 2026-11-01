@@ -166,37 +166,42 @@ extension Controller {
         return nil
     }
 
-    /// 슬라이더를 놓았을 때 부른다. 잠깐 그 음량으로 맞춰 macOS 가 쓴 값을 읽고, 원래 음량으로 되돌린다.
-    /// 소리를 내지 않으니 아무것도 들리지 않는다(재생 중인 소리가 있으면 2~3초 커질 수 있다).
+    /// 슬라이더를 놓았을 때 부른다. 음소거를 켠 채 음량만 그 값으로 맞춰 macOS 가 쓴 값을 읽고, 원래대로 되돌린다.
+    /// 음소거 중에도 macOS 는 음량 값을 쓰고 둘째 바이트에 음소거 표시(0x80)만 더 붙인다(50 → 0a8f, 80 → 28bb).
+    /// 그 표시만 빼면 음소거 없이 잰 값과 같다. 재는 동안 소리가 커지지 않는다(재생 중인 소리는 잠깐 음소거된다).
     func applyChimeVolume() {
         guard !measuring else { return }
         measuring = true
         let target = chimeVolume
-        let original = SystemVolume.get() ?? 0
+        let saved = SystemVolume.snapshot()
         Task { @MainActor in
             defer {
-                SystemVolume.set(original)
+                if let saved { SystemVolume.restore(saved) }
                 measuring = false
                 refreshVolume()
                 checkHealth()
             }
-            // 1) 음소거로 내려 음소거 표시(0x80)가 찍히는 걸 확인하고
-            SystemVolume.set(0)
-            guard await waitExtension({ $0[1] & 0x80 != 0 }) != nil else {
+            // 1) 음소거를 켜고 음량 0 으로 내린 뒤, macOS 가 쓸 시간(약 1.5초)을 기다려 기준 값을 읽는다
+            SystemVolume.setMuted(true)
+            SystemVolume.setLevel(0)
+            try? await Task.sleep(for: .milliseconds(2000))
+            guard let base = readExtension(), base.count == 2 else {
+                message = "부팅음 음량을 재지 못했습니다."
+                AppLog.error("부팅음 음량 \(target) 재기 실패: NVRAM 값을 읽지 못함")
+                return
+            }
+            // 2) 음소거는 그대로 두고 음량만 목표로 올려, 기준과 달라진(음소거 표시가 붙은) 값을 기다린다
+            SystemVolume.setLevel(target)
+            guard let b = await waitExtension({ $0 != base && $0[1] & 0x80 != 0 }) else {
                 message = "부팅음 음량을 재지 못했습니다."
                 AppLog.error("부팅음 음량 \(target) 재기 실패: NVRAM 값이 바뀌지 않음")
                 return
             }
-            // 2) 목표 음량으로 올려 표시가 사라진 값을 읽는다
-            SystemVolume.set(target)
-            guard let b = await waitExtension({ $0[1] & 0x80 == 0 }) else {
-                message = "부팅음 음량을 재지 못했습니다."
-                AppLog.error("부팅음 음량 \(target) 재기 실패: NVRAM 값이 바뀌지 않음")
-                return
-            }
-            // 바뀐 직후 한 번 더 읽어 값이 자리를 잡았는지 본다
+            // 바뀐 직후 한 번 더 읽어 값이 자리를 잡았는지 보고, 음소거 표시를 뺀다
             try? await Task.sleep(for: .milliseconds(400))
-            let settled = readExtension() ?? b
+            var settled = readExtension() ?? b
+            if settled.count != 2 { settled = b }
+            settled[settled.startIndex + 1] &= 0x7f
             let hex = settled.map { String(format: "%02x", $0) }.joined()
             UserDefaults.standard.set(hex, forKey: "chimeHex")
             message = nil

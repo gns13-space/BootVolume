@@ -47,6 +47,40 @@ enum SystemVolume {
         return ok
     }
 
+    /// 음량(0~1)과 음소거를 그대로 기억해 두었다가 되돌릴 때 쓴다.
+    struct State {
+        let level: Float32
+        let muted: Bool
+    }
+
+    static func snapshot() -> State? {
+        guard let dev = defaultOutputDevice() else { return nil }
+        var v = Float32(0)
+        var size = UInt32(MemoryLayout<Float32>.size)
+        guard AudioObjectGetPropertyData(dev, &volumeAddr, 0, nil, &size, &v) == noErr else { return nil }
+        return State(level: v, muted: isMuted(dev))
+    }
+
+    /// 음량을 먼저 되돌리고 음소거를 맞춘다(음소거를 먼저 풀면 잠깐 큰 소리가 날 수 있다).
+    static func restore(_ s: State) {
+        guard let dev = defaultOutputDevice() else { return }
+        var v = s.level
+        AudioObjectSetPropertyData(dev, &volumeAddr, 0, nil, UInt32(MemoryLayout<Float32>.size), &v)
+        setMuted(dev, s.muted)
+    }
+
+    /// 음소거는 건드리지 않고 음량(0~100)만 바꾼다.
+    static func setLevel(_ percent: Int) {
+        guard let dev = defaultOutputDevice() else { return }
+        var v = Float32(min(max(percent, 0), 100)) / 100
+        AudioObjectSetPropertyData(dev, &volumeAddr, 0, nil, UInt32(MemoryLayout<Float32>.size), &v)
+    }
+
+    static func setMuted(_ muted: Bool) {
+        guard let dev = defaultOutputDevice() else { return }
+        setMuted(dev, muted)
+    }
+
     private static func isMuted(_ dev: AudioDeviceID) -> Bool {
         var m = UInt32(0)
         var size = UInt32(MemoryLayout<UInt32>.size)
