@@ -1,6 +1,6 @@
 # BootVolume
 
-[English](README.md)
+[English](README.md) · [웹사이트](https://bootvolume.oodot.top)
 
 로그인한 뒤에는 소리가 나지 않게 두면서, 맥을 켤 때 나는 부팅음만 들리게 하는 macOS 메뉴바 앱입니다.
 

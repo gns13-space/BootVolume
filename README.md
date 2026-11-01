@@ -1,6 +1,6 @@
 # BootVolume
 
-[한국어](README.ko.md)
+[한국어](README.ko.md) · [Website](https://bootvolume.oodot.top)
 
 A macOS menu bar app that keeps your Mac silent after login but still plays the startup chime.
 

@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BootVolume</title>
+<meta name="description" content="Mac의 음량은 자유롭게, 웅장한 부팅음은 일정하게. Mac의 기본 음량에 상관없이 항상 일정한 '부팅음만의 음량'을 설정해보세요.">
+<meta property="og:title" content="BootVolume">
+<meta property="og:description" content="Mac의 음량은 자유롭게, 웅장한 부팅음은 일정하게. Mac의 기본 음량에 상관없이 항상 일정한 '부팅음만의 음량'을 설정해보세요.">
+<meta property="og:url" content="https://bootvolume.oodot.top/">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#000}
+a{color:#f5f5f7}a:hover{color:#ffffff}
+summary{list-style:none;cursor:pointer}
+summary::-webkit-details-marker{display:none}
+details[open] .chev{transform:rotate(180deg)}
+.scr{container-type:inline-size}
+.cam{transform-origin:0 0;animation:cam 18s infinite;animation-timing-function:cubic-bezier(.65,0,.35,1)}
+.cur{animation:cur 18s infinite;animation-timing-function:cubic-bezier(.45,0,.25,1)}
+.ico{animation:ico 18s infinite}
+.pnl{animation:pnl 18s infinite}
+.thm{animation:thm 18s infinite;animation-timing-function:cubic-bezier(.45,0,.25,1)}
+.fil{animation:fil 18s infinite;animation-timing-function:cubic-bezier(.45,0,.25,1)}
+.v50{animation:v50 18s infinite}.v65{animation:v65 18s infinite}.v80{animation:v80 18s infinite}
+.rp1{animation:rp1 18s infinite}.rp2{animation:rp2 18s infinite}
+.blk{animation:blk 18s infinite}
+.lgo{animation:lgo 18s infinite}
+.trk{animation:trk 18s infinite}
+.prg{animation:prg 18s infinite linear}
+.hud{animation:hud 18s infinite}
+.s1{animation:s1 18s infinite}.s2{animation:s2 18s infinite}.s3{animation:s3 18s infinite}.s4{animation:s4 18s infinite}
+.f1{animation:f1 18s infinite linear}.f2{animation:f2 18s infinite linear}.f3{animation:f3 18s infinite linear}.f4{animation:f4 18s infinite linear}
+.paused *{animation-play-state:paused !important}
+@keyframes cam{0%,4%{transform:translate(0,0) scale(1)}9%,11%{transform:translate(-94cqw,0) scale(2)}14.5%,30%{transform:translate(-108.4cqw,0) scale(2.2)}35.5%,85%{transform:translate(0,0) scale(1)}88.5%,95%{transform:translate(-80cqw,0) scale(1.8)}99%,100%{transform:translate(0,0) scale(1)}}
+@keyframes cur{0%{left:40cqw;top:36cqw;opacity:1}8%,10%{left:75.05cqw;top:1.3cqw}15%,16.5%{left:73.3cqw;top:15.2cqw}26%,30%{left:77.7cqw;top:15.2cqw}34%{left:66cqw;top:30cqw;opacity:1}39%{left:66cqw;top:30cqw;opacity:0}84%{left:60cqw;top:30cqw;opacity:0}87%{left:60cqw;top:30cqw;opacity:1}100%{left:40cqw;top:36cqw;opacity:1}}
+@keyframes ico{0%,9.8%{background:transparent}10%,36%{background:rgba(255,255,255,.22)}37.5%,100%{background:transparent}}
+@keyframes pnl{0%,10.3%{opacity:0;transform:translateY(-0.5cqw)}12.3%,35.5%{opacity:1;transform:none}37.5%,100%{opacity:0;transform:translateY(-0.5cqw)}}
+@keyframes thm{0%,17%{left:calc(47.4% - 0.65cqw)}26%,100%{left:calc(78.9% - 0.65cqw)}}
+@keyframes fil{0%,17%{width:47.4%}26%,100%{width:78.9%}}
+@keyframes v50{0%,19.5%{opacity:1}20%,100%{opacity:0}}
+@keyframes v65{0%,19.5%{opacity:0}20%,23.5%{opacity:1}24%,100%{opacity:0}}
+@keyframes v80{0%,23.5%{opacity:0}24%,100%{opacity:1}}
+@keyframes rp1{0%,9.9%{opacity:0;transform:scale(.3)}10%{opacity:.9;transform:scale(.3)}12.5%,100%{opacity:0;transform:scale(1.6)}}
+@keyframes rp2{0%,16.4%{opacity:0;transform:scale(.3)}16.5%{opacity:.9;transform:scale(.3)}19%,100%{opacity:0;transform:scale(1.6)}}
+@keyframes blk{0%,40%{opacity:0}45%,78%{opacity:1}83%,100%{opacity:0}}
+@keyframes lgo{0%,51%{opacity:0}53%,77%{opacity:1}79%,100%{opacity:0}}
+@keyframes trk{0%,56%{opacity:0}57%,77%{opacity:1}79%,100%{opacity:0}}
+@keyframes prg{0%,57%{width:0}76%,100%{width:100%}}
+@keyframes hud{0%,87%{opacity:0;transform:scale(.96)}89%,95%{opacity:1;transform:none}98%,100%{opacity:0;transform:scale(.96)}}
+@keyframes s1{0%,38.5%{color:#f5f5f7}39.5%,100%{color:#86868e}}
+@keyframes s2{0%,38.5%{color:#86868e}39.5%,50.5%{color:#f5f5f7}51.5%,100%{color:#86868e}}
+@keyframes s3{0%,50.5%{color:#86868e}51.5%,79.5%{color:#f5f5f7}80.5%,100%{color:#86868e}}
+@keyframes s4{0%,79.5%{color:#86868e}80.5%,99%{color:#f5f5f7}100%{color:#86868e}}
+@keyframes f1{0%{width:0}39%,100%{width:100%}}
+@keyframes f2{0%,39%{width:0}51%,100%{width:100%}}
+@keyframes f3{0%,51%{width:0}80%,100%{width:100%}}
+@keyframes f4{0%,80%{width:0}100%{width:100%}}
+@media (prefers-reduced-motion: reduce){.stage *{animation:none !important}.faq-a,.chev{transition:none !important}}
+</style>
+<style>[hidden]{display:none !important}</style>
+</head>
+<body>
+<div style="width: 100%; background: #000; color: #f5f5f7; font-family: Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; word-break: keep-all">
+
+<header style="max-width: 1600px; margin: 0 auto; padding: 16px clamp(24px, 4vw, 64px); display: flex; align-items: center; gap: 8px 16px; flex-wrap: wrap">
+<a href="#top" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #f5f5f7; font-weight: 700; font-size: 17px; min-height: 44px; margin-right: auto">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path><path d="M18.5 5.5a9 9 0 0 1 0 13"></path></svg>
+BootVolume
+</a>
+<nav aria-label="페이지 안내" style="display: flex; align-items: center; flex-wrap: wrap; font-size: 15px">
+<a href="#features" style="color: #a1a1a8; text-decoration: none; padding: 10px 14px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">기능</a>
+<a href="#install" style="color: #a1a1a8; text-decoration: none; padding: 10px 14px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">설치</a>
+<a href="#faq" style="color: #a1a1a8; text-decoration: none; padding: 10px 14px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">자주 묻는 질문</a>
+</nav>
+<a href="https://github.com/gns13-space/BootVolume" style="display: inline-flex; align-items: center; min-height: 40px; padding: 0 18px; border-radius: 999px; background: #f5f5f7; color: #000; font-weight: 700; font-size: 14px; text-decoration: none; box-sizing: border-box">받기</a>
+</header>
+
+<section id="top" style="max-width: 1180px; margin: 0 auto; padding: 96px 24px 0; text-align: center">
+<h1 style="margin: 0; font-size: clamp(44px, 7vw, 88px); line-height: 1.08; font-weight: 700; letter-spacing: -0.04em">일정하게, 웅장하게<br>시작하는 Mac</h1>
+<p style="margin: 28px auto 0; max-width: 820px; font-size: 19px; line-height: 1.65; color: #a1a1a8">Mac의 음량은 자유롭게, 웅장한 부팅음은 일정하게.<br>Mac의 기본 음량에 상관없이 항상 일정한 '부팅음만의 음량'을 설정해보세요.</p>
+<div style="margin-top: 40px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap">
+<a href="https://github.com/gns13-space/BootVolume" style="display: inline-flex; align-items: center; gap: 8px; min-height: 52px; padding: 0 28px; border-radius: 999px; background: #f5f5f7; color: #000; font-weight: 700; font-size: 17px; text-decoration: none; box-sizing: border-box">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"></path><path d="m7 10 5 5 5-5"></path><path d="M5 20h14"></path></svg>
+GitHub에서 받기
+</a>
+<a href="#faq" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; border-radius: 999px; border: 1px solid #333338; color: #f5f5f7; font-weight: 500; font-size: 17px; text-decoration: none; box-sizing: border-box">자주 묻는 질문</a>
+</div>
+<p style="margin: 20px 0 0; font-size: 13px; color: #86868e">macOS 15 이상 · Apple Silicon Mac</p>
+</section>
+
+<section aria-label="BootVolume 동작 화면" style="max-width: 1180px; margin: 0 auto; padding: 80px 24px 0">
+<div class="stage" id="stage" style="max-width: 1100px; margin: 0 auto">
+
+<div style="border-radius: 14px; box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 40px 100px rgba(0,0,0,.8)">
+<div class="scr" role="img" aria-label="화면이 커서를 따라 확대되며, 메뉴 막대의 BootVolume 패널에서 부팅음 음량을 80으로 정하고, Mac을 끈 뒤 켜면 Apple 로고가 뜨고, 로그인하면 음량 0 표시가 확대되는 장면" style="position: relative; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 14px; background: #252a33; font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; color: #f2f2f3">
+
+<div class="cam" aria-hidden="true" style="position: absolute; inset: 0">
+
+<div style="position: absolute; left: 0; right: 0; top: 0; height: 2.6cqw; background: rgba(0,0,0,.32); font-size: 1.15cqw; line-height: 2.6cqw">
+<svg style="position: absolute; left: 1.8cqw; top: 0.6cqw; width: 1.2cqw; height: 1.4cqw" viewBox="2 0 20 24" fill="#f2f2f3"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"></path></svg>
+<span style="position: absolute; left: 4.4cqw; font-weight: 700">Finder</span>
+<span style="position: absolute; left: 9.4cqw">파일</span>
+<span style="position: absolute; left: 12.8cqw">편집</span>
+<span style="position: absolute; left: 16.2cqw">보기</span>
+<span style="position: absolute; left: 19.6cqw">이동</span>
+<span style="position: absolute; left: 23cqw">윈도우</span>
+<span class="ico" style="position: absolute; left: 74cqw; top: 0.45cqw; width: 2.1cqw; height: 1.7cqw; border-radius: 0.4cqw; display: flex; align-items: center; justify-content: center">
+<img src="assets/bootvolume-icon.png" alt="" style="width: 1.54cqw; height: 1.15cqw; display: block">
+</span>
+<span style="position: absolute; right: 1.6cqw; top: 0; height: 2.6cqw; display: flex; align-items: center; gap: 1cqw">
+<img src="assets/wifi.png" alt="" style="width: 1.53cqw; height: 1.15cqw; display: block">
+<img src="assets/battery.png" alt="" style="width: 2.32cqw; height: 1.15cqw; display: block">
+<img src="assets/control-center.png" alt="" style="width: 1.29cqw; height: 1.2cqw; display: block">
+<span style="margin-left: 0.3cqw">11월 1일 (일) 오후 10:24</span>
+</span>
+</div>
+
+<div class="pnl" style="position: absolute; top: 3.2cqw; right: 14cqw; width: 28cqw; box-sizing: border-box; padding: 1.4cqw; border-radius: 1.3cqw; background: rgba(38,38,41,.97); box-shadow: inset 0 0 0 0.08cqw rgba(255,255,255,.12), 0 1.4cqw 3cqw rgba(0,0,0,.45); font-size: 1.15cqw; line-height: 1.4; display: flex; flex-direction: column; gap: 1cqw">
+<div style="height: 2cqw; display: flex; align-items: center; gap: 1cqw">
+<span style="font-weight: 700; font-size: 1.3cqw">BootVolume</span>
+<span style="flex: 1"></span>
+<svg style="width: 1.4cqw; height: 1.4cqw" viewBox="0 0 24 24" fill="none" stroke="#98989d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"></path></svg>
+<span style="position: relative; width: 2.6cqw; height: 1.5cqw; border-radius: 1cqw; background: #0a84ff"><span style="position: absolute; right: 0.15cqw; top: 0.15cqw; width: 1.2cqw; height: 1.2cqw; border-radius: 50%; background: #fff"></span></span>
+</div>
+<div style="height: 1.8cqw; display: flex; align-items: center; gap: 1cqw">
+<span style="width: 6.4cqw; flex: none">지금 음량</span>
+<span style="position: relative; flex: 1; height: 0.36cqw; border-radius: 1cqw; background: rgba(255,255,255,.18)"><span style="position: absolute; top: 50%; left: -0.65cqw; width: 1.3cqw; height: 1.3cqw; margin-top: -0.65cqw; border-radius: 50%; background: #e8e8ea"></span></span>
+<span style="width: 3cqw; flex: none; text-align: right; color: #98989d">0</span>
+</div>
+<div style="height: 0.1cqw; background: rgba(255,255,255,.12)"></div>
+<div style="height: 1.8cqw; display: flex; align-items: center; gap: 1cqw">
+<span style="width: 6.4cqw; flex: none">로그인 후</span>
+<span style="position: relative; flex: 1; height: 0.36cqw; border-radius: 1cqw; background: rgba(255,255,255,.18)"><span style="position: absolute; top: 50%; left: -0.65cqw; width: 1.3cqw; height: 1.3cqw; margin-top: -0.65cqw; border-radius: 50%; background: #e8e8ea"></span></span>
+<span style="width: 3cqw; flex: none; text-align: right; color: #98989d">0</span>
+</div>
+<div style="height: 1.8cqw; display: flex; align-items: center; gap: 1cqw">
+<span style="width: 6.4cqw; flex: none">부팅음</span>
+<span style="position: relative; flex: 1; height: 0.36cqw; border-radius: 1cqw; background: rgba(255,255,255,.18)">
+<span class="fil" style="position: absolute; left: 0; top: 0; bottom: 0; width: 78.9%; border-radius: 1cqw; background: #0a84ff"></span>
+<span class="thm" style="position: absolute; top: 50%; left: calc(78.9% - 0.65cqw); width: 1.3cqw; height: 1.3cqw; margin-top: -0.65cqw; border-radius: 50%; background: #e8e8ea; box-shadow: 0 0.1cqw 0.3cqw rgba(0,0,0,.5)"></span>
+</span>
+<span style="position: relative; width: 3cqw; height: 1.6cqw; flex: none; color: #98989d">
+<span class="v50" style="position: absolute; right: 0; top: 0; opacity: 0">50</span>
+<span class="v65" style="position: absolute; right: 0; top: 0; opacity: 0">65</span>
+<span class="v80" style="position: absolute; right: 0; top: 0">80</span>
+</span>
+</div>
+<div style="height: 0.1cqw; background: rgba(255,255,255,.12)"></div>
+<div style="display: flex; align-items: center; justify-content: space-between">부팅음 켜기<span style="position: relative; width: 2.6cqw; height: 1.5cqw; border-radius: 1cqw; background: #0a84ff"><span style="position: absolute; right: 0.15cqw; top: 0.15cqw; width: 1.2cqw; height: 1.2cqw; border-radius: 50%; background: #fff"></span></span></div>
+<div style="display: flex; align-items: center; justify-content: space-between">로그인 시 열기<span style="position: relative; width: 2.6cqw; height: 1.5cqw; border-radius: 1cqw; background: #0a84ff"><span style="position: absolute; right: 0.15cqw; top: 0.15cqw; width: 1.2cqw; height: 1.2cqw; border-radius: 50%; background: #fff"></span></span></div>
+<div style="display: flex; align-items: center; justify-content: space-between">끄기 전 음량으로 되돌리기<span style="position: relative; width: 2.6cqw; height: 1.5cqw; border-radius: 1cqw; background: rgba(255,255,255,.2)"><span style="position: absolute; left: 0.15cqw; top: 0.15cqw; width: 1.2cqw; height: 1.2cqw; border-radius: 50%; background: #fff"></span></span></div>
+<div style="height: 0.1cqw; background: rgba(255,255,255,.12)"></div>
+<div style="display: flex; flex-direction: column; gap: 0.3cqw; font-size: 1cqw; color: #98989d">
+<div style="display: flex; align-items: center; gap: 0.5cqw"><span style="flex: 1">도우미</span><span style="width: 0.7cqw; height: 0.7cqw; border-radius: 50%; background: #30d158"></span>정상</div>
+<div style="display: flex; justify-content: space-between"><span>마지막 로그인</span><span>오늘 오전 9:12</span></div>
+<div style="display: flex; justify-content: space-between"><span>마지막 끄기</span><span>어제 오후 11:40</span></div>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; font-size: 1cqw">
+<span style="color: #4ea1ff">도우미 지우기</span>
+<span style="padding: 0.2cqw 0.9cqw; border-radius: 0.5cqw; background: rgba(255,255,255,.14)">종료</span>
+</div>
+</div>
+
+<img class="hud" src="assets/volume-hud.png" alt="" style="position: absolute; top: 3.2cqw; right: 1.2cqw; width: 24cqw; height: 5.24cqw; display: block; filter: drop-shadow(0 0.6cqw 1.6cqw rgba(0,0,0,.35)); opacity: 0">
+
+<span class="rp1" style="position: absolute; left: 73.55cqw; top: -0.2cqw; width: 3cqw; height: 3cqw; border-radius: 50%; border: 0.25cqw solid rgba(255,255,255,.85); box-sizing: border-box; opacity: 0"></span>
+<span class="rp2" style="position: absolute; left: 71.8cqw; top: 13.7cqw; width: 3cqw; height: 3cqw; border-radius: 50%; border: 0.25cqw solid rgba(255,255,255,.85); box-sizing: border-box; opacity: 0"></span>
+
+<svg class="cur" style="position: absolute; left: 77.7cqw; top: 15.2cqw; width: 1.8cqw; height: 2.7cqw; opacity: 0; filter: drop-shadow(0 0.15cqw 0.3cqw rgba(0,0,0,.45))" viewBox="0 0 14 21"><path d="M1 1v16l4-3.8 3 6.6 2.6-1.1-3-6.4H13z" fill="#000" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"></path></svg>
+
+</div>
+
+<div class="blk" aria-hidden="true" style="position: absolute; inset: 0; background: #000; opacity: 0"></div>
+<svg class="lgo" aria-hidden="true" style="position: absolute; left: 47.5cqw; top: 21.5cqw; width: 5cqw; height: 6cqw; opacity: 0" viewBox="2 0 20 24" fill="#f5f5f7"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"></path></svg>
+<div class="trk" aria-hidden="true" style="position: absolute; left: 43.5cqw; top: 34.5cqw; width: 13cqw; height: 0.35cqw; border-radius: 1cqw; background: #3a3a3c; overflow: hidden; opacity: 0"><div class="prg" style="width: 0; height: 100%; background: #f5f5f7; border-radius: 1cqw"></div></div>
+
+</div>
+</div>
+
+<div style="margin-top: 40px; display: flex; flex-wrap: wrap; gap: 24px 16px; align-items: flex-start">
+<ol style="flex: 999 1 560px; margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 16px; font-size: 14px">
+
+
+
+
+</ol>
+<button type="button" id="pause" aria-label="일시정지" style="flex: none; min-width: 44px; min-height: 44px; margin-top: -8px; border-radius: 999px; border: 1px solid #333338; background: transparent; color: #f5f5f7; display: inline-flex; align-items: center; justify-content: center; cursor: pointer">
+<span class="ic-play" hidden>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg>
+</span>
+<span class="ic-pause">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4.5" width="4" height="15" rx="1"></rect><rect x="14" y="4.5" width="4" height="15" rx="1"></rect></svg>
+</span>
+</button>
+</div>
+
+</div>
+</section>
+
+<section id="features" style="max-width: 1180px; margin: 0 auto; padding: 168px 24px 0">
+<h2 style="margin: 0; font-size: clamp(30px, 4vw, 52px); line-height: 1.2; font-weight: 700; letter-spacing: -0.03em">터미널 없이 설정하는 부팅음 음량</h2>
+<div style="margin-top: 64px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
+
+<article style="background: #111113; border-radius: 24px; padding: 32px; box-shadow: inset 0 0 0 1px #1f1f23; display: flex; flex-direction: column; gap: 28px">
+<div aria-hidden="true" style="background: #1c1c1f; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 14px; font-size: 14px; color: #e5e5e8; box-shadow: inset 0 0 0 1px #2a2a2e">
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 76px; flex: none">로그인 후</span><span style="position: relative; flex: 1; height: 4px; border-radius: 4px; background: #3a3a3e"><span style="position: absolute; left: -8px; top: -6px; width: 16px; height: 16px; border-radius: 50%; background: #e8e8ea"></span></span><span style="width: 28px; text-align: right; color: #98989d">0</span></div>
+<div style="height: 1px; background: #2a2a2e"></div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">끄기 전 음량으로 되돌리기<span style="position: relative; flex: none; width: 32px; height: 19px; border-radius: 10px; background: #48484c"><span style="position: absolute; left: 2px; top: 2px; width: 15px; height: 15px; border-radius: 50%; background: #fff"></span></span></div>
+</div>
+<div>
+<h3 style="margin: 0 0 8px; font-size: 20px; font-weight: 700">로그인 후 음량 설정</h3>
+<p style="margin: 0; color: #a1a1a8">Mac을 부팅하고 로그인하면 정해 둔 음량으로 설정됩니다. Mac 종료 전 음량으로 설정되게 할 수도 있습니다.</p>
+</div>
+</article>
+
+<article style="background: #111113; border-radius: 24px; padding: 32px; box-shadow: inset 0 0 0 1px #1f1f23; display: flex; flex-direction: column; gap: 28px">
+<div aria-hidden="true" style="background: #1c1c1f; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 14px; font-size: 14px; color: #e5e5e8; box-shadow: inset 0 0 0 1px #2a2a2e">
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 76px; flex: none">부팅음</span><span style="position: relative; flex: 1; height: 4px; border-radius: 4px; background: #3a3a3e"><span style="position: absolute; left: 0; top: 0; bottom: 0; width: 79%; border-radius: 4px; background: #0a84ff"></span><span style="position: absolute; left: calc(79% - 8px); top: -6px; width: 16px; height: 16px; border-radius: 50%; background: #e8e8ea"></span></span><span style="width: 28px; text-align: right; color: #98989d">80</span></div>
+<div style="height: 1px; background: #2a2a2e"></div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">부팅음 켜기<span style="position: relative; flex: none; width: 32px; height: 19px; border-radius: 10px; background: #0a84ff"><span style="position: absolute; right: 2px; top: 2px; width: 15px; height: 15px; border-radius: 50%; background: #fff"></span></span></div>
+</div>
+<div>
+<h3 style="margin: 0 0 8px; font-size: 20px; font-weight: 700">부팅음 음량 설정</h3>
+<p style="margin: 0; color: #a1a1a8">Mac을 다시 켤 때 부팅음을 듣기 위해 종료 전 볼륨을 올려놓을 필요가 없습니다. 부팅음을 설정하면 종료 전 볼륨을 해당 값으로 설정합니다.</p>
+</div>
+</article>
+
+<article style="background: #111113; border-radius: 24px; padding: 32px; box-shadow: inset 0 0 0 1px #1f1f23; display: flex; flex-direction: column; gap: 28px">
+<div aria-hidden="true" style="background: #1c1c1f; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: #98989d; box-shadow: inset 0 0 0 1px #2a2a2e">
+<div style="display: flex; align-items: center; gap: 8px"><span style="flex: 1">도우미</span><span style="width: 8px; height: 8px; border-radius: 50%; background: #30d158"></span><span style="color: #e5e5e8">정상</span></div>
+<div style="display: flex; justify-content: space-between"><span>마지막 로그인</span><span>오늘 오전 9:12</span></div>
+<div style="display: flex; justify-content: space-between"><span>마지막 끄기</span><span>어제 오후 11:40</span></div>
+</div>
+<div>
+<h3 style="margin: 0 0 8px; font-size: 20px; font-weight: 700">작동 상태 확인</h3>
+<p style="margin: 0; color: #a1a1a8">앱이 알아서 작동 상태를 점검합니다. 부팅음 음량 설정 가능 유무, 업데이트 상태 등을 스스로 점검하고 상태를 사용자에게 표시합니다.</p>
+</div>
+</article>
+
+</div>
+</section>
+
+
+
+<section id="install" style="max-width: 1180px; margin: 0 auto; padding: 168px 24px 0">
+<h2 style="margin: 0; font-size: clamp(30px, 4vw, 52px); line-height: 1.2; font-weight: 700; letter-spacing: -0.03em">설치 방법</h2>
+<div style="margin-top: 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px">
+
+<article style="background: #111113; border-radius: 24px; padding: 32px; box-shadow: inset 0 0 0 1px #1f1f23; display: flex; flex-direction: column; gap: 20px; min-width: 0">
+
+<h3 style="margin: 0; font-size: 22px; font-weight: 700">간단하게 설치</h3>
+<ol style="margin: 0; padding: 0 0 0 22px; color: #a1a1a8; display: flex; flex-direction: column; gap: 10px">
+<li>아래 'GitHub에서 받기'를 눌러 BootVolume을 설치합니다.</li>
+<li>압축을 풀고 BootVolume 앱을 응용 프로그램 폴더로 옮깁니다.</li>
+<li>앱을 실행합니다.</li>
+</ol>
+<div style="margin-top: auto; padding-top: 8px">
+<a href="https://github.com/gns13-space/BootVolume/releases/latest" style="display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 24px; border-radius: 999px; background: #f5f5f7; color: #000; font-weight: 700; font-size: 16px; text-decoration: none; box-sizing: border-box">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"></path><path d="m7 10 5 5 5-5"></path><path d="M5 20h14"></path></svg>
+GitHub에서 받기
+</a>
+</div>
+</article>
+
+<article style="background: #111113; border-radius: 24px; padding: 32px; box-shadow: inset 0 0 0 1px #1f1f23; display: flex; flex-direction: column; gap: 20px; min-width: 0">
+
+<h3 style="margin: 0; font-size: 22px; font-weight: 700">터미널로 빌드</h3>
+<p style="margin: 0; color: #a1a1a8">터미널에 다음 명령어를 입력하여 빌드합니다. <code style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; color: #f5f5f7">/Applications</code> 폴더에 설치됩니다.</p>
+<div style="position: relative; margin-top: auto">
+<pre style="margin: 0; padding: 24px 28px; padding-right: 120px; border-radius: 16px; background: #0a0a0b; box-shadow: inset 0 0 0 1px #222226; overflow-x: auto; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; line-height: 1.9; color: #e4e4e7"><span style="color: #86868e">$</span> git clone https://github.com/gns13-space/BootVolume
+<span style="color: #86868e">$</span> cd BootVolume
+<span style="color: #86868e">$</span> ./build.sh</pre>
+<button type="button" id="copy" aria-label="명령어 복사" style="position: absolute; top: 12px; right: 12px; display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #333338; background: #1c1c1f; color: #f5f5f7; font-family: inherit; font-size: 13px; font-weight: 500; cursor: pointer">
+<span class="ic-copy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg></span>
+<span class="ic-done" hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg></span>
+<span class="copy-label" aria-live="polite">복사</span>
+</button>
+</div>
+</article>
+
+</div>
+<div style="margin-top: 40px; display: flex; flex-wrap: wrap; gap: 16px 64px; padding: 28px 0">
+<h3 style="flex: 1 1 200px; margin: 0; font-size: 18px; font-weight: 700">설치한 뒤</h3>
+<ol style="flex: 999 1 460px; margin: 0; padding: 0 0 0 22px; color: #a1a1a8; display: flex; flex-direction: column; gap: 10px">
+<li>메뉴 막대의 스피커 아이콘을 누릅니다.</li>
+<li><strong style="color: rgb(245, 245, 247); font-weight: 700">도우미 설치</strong>를 누르고 부팅음을 설정하여 설치 및 설정을 완료합니다.</li>
+</ol>
+</div>
+</section>
+
+<section style="max-width: 1180px; margin: 0 auto; padding: 168px 24px 0">
+<h2 style="margin: 0; font-size: clamp(30px, 4vw, 52px); line-height: 1.2; font-weight: 700; letter-spacing: -0.03em">앱이 정상적으로 작동하지 않는 경우</h2>
+<ul style="margin: 40px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column">
+<li style="display: flex; flex-wrap: wrap; gap: 8px 40px; padding: 24px 0; border-top: 1px solid #222226"><span style="flex: 1 1 240px; font-weight: 700; white-space: nowrap">강제 종료</span><span style="flex: 999 1 420px; color: rgb(161, 161, 168)">전원 버튼을 길게 눌러 강제종료를 하면 앱이 작업을 하지 못해 다음 부팅음이 사전 설정된 음량으로 나지 않을 수 있습니다.</span></li>
+<li style="display: flex; flex-wrap: wrap; gap: 8px 40px; padding: 24px 0; border-top: 1px solid #222226"><span style="flex: 1 1 240px; font-weight: 700; white-space: nowrap">macOS 업데이트</span><span style="flex: 999 1 420px; color: rgb(161, 161, 168)">macOS가 새 버전으로 업데이트되면&nbsp;<span style="font-family: Pretendard, -apple-system, BlinkMacSystemFont, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, sans-serif">부팅음이 사전 설정된 음량으로 나지 않을 수 있습니다.</span><span style="font-family: Pretendard, -apple-system, BlinkMacSystemFont, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, sans-serif">&nbsp;해당 경우 도우미를 다시 설치해주세요.</span></span></li>
+<li style="display: flex; flex-wrap: wrap; gap: 8px 40px; padding: 24px 0; border-top: 1px solid #222226; border-bottom: 1px solid #222226"><span style="flex: 1 1 240px; font-weight: 700; white-space: nowrap">Intel Mac 및 macOS 14 이하</span><span style="flex: 999 1 420px; color: rgb(161, 161, 168)">Mac이 Intel Mac이거나 macOS 버전이 14 이하인 경우 제대로 작동하지 않을 수 있습니다.</span></li>
+</ul>
+</section>
+
+<section id="faq" style="max-width: 1180px; margin: 0 auto; padding: 168px 24px 0">
+<h2 style="margin: 0 0 40px; font-size: clamp(30px, 4vw, 52px); line-height: 1.2; font-weight: 700; letter-spacing: -0.03em">자주 묻는 질문</h2>
+<div style="border-top: 1px solid #222226">
+<button type="button" class="faq-q" data-faq="1" aria-expanded="false" aria-controls="faq-a1" style="width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; padding: 0; border: 0; background: transparent; color: #f5f5f7; font-family: inherit; font-size: 17px; font-weight: 500; text-align: left; cursor: pointer"><span>부팅음이 나지 않아요</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#86868e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; transition: transform .2s; transform: none"><path d="m6 9 6 6 6-6"></path></svg></button>
+<div class="faq-a" id="faq-a1" aria-hidden="true" style="display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .32s cubic-bezier(.2,.8,.2,1), opacity .24s ease">
+<div style="overflow: hidden; min-height: 0">
+<p style="margin: 0; padding-bottom: 24px; color: #a1a1a8">패널 아래 '도우미'가 정상인지 확인해주세요. Mac을 강제종료하여 끄면 도우미가 실행되지 못해 다음 부팅음이 나지 않을 수 있습니다. Mac '메뉴'의 '시스템 종료'를 통해 정상적인 방법으로 종료해주세요.</p>
+</div>
+</div>
+</div>
+<div style="border-top: 1px solid #222226">
+<button type="button" class="faq-q" data-faq="2" aria-expanded="false" aria-controls="faq-a2" style="width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; padding: 0; border: 0; background: transparent; color: #f5f5f7; font-family: inherit; font-size: 17px; font-weight: 500; text-align: left; cursor: pointer"><span>관리자 암호는 왜 필요한가요?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#86868e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; transition: transform .2s; transform: none"><path d="m6 9 6 6 6-6"></path></svg></button>
+<div class="faq-a" id="faq-a2" aria-hidden="true" style="display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .32s cubic-bezier(.2,.8,.2,1), opacity .24s ease">
+<div style="overflow: hidden; min-height: 0">
+<p style="margin: 0; padding-bottom: 24px; color: #a1a1a8">부팅음 음량이 기록되는 곳인 'NVRAM'을 덮어쓰려면 관리자 권한이 필요합니다. 도우미는 해당 값만을 수정할 수 있습니다. 또한 BootVolume은 오픈소스 프로그램으로서 안심하고 사용하실 수 있습니다. 걱정하지 말고 사용하세요!</p>
+</div>
+</div>
+</div>
+<div style="border-top: 1px solid #222226">
+<button type="button" class="faq-q" data-faq="3" aria-expanded="false" aria-controls="faq-a3" style="width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; padding: 0; border: 0; background: transparent; color: #f5f5f7; font-family: inherit; font-size: 17px; font-weight: 500; text-align: left; cursor: pointer"><span>부팅음 음량 설정값을 변경하면 시스템 음량도 같이 변경되나요?<br></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#86868e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; transition: transform .2s; transform: none"><path d="m6 9 6 6 6-6"></path></svg></button>
+<div class="faq-a" id="faq-a3" aria-hidden="true" style="display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .32s cubic-bezier(.2,.8,.2,1), opacity .24s ease">
+<div style="overflow: hidden; min-height: 0">
+<p style="margin: 0; padding-bottom: 24px; color: #a1a1a8">BootVolume 패널에서 부팅음 음량 슬라이더를 움직이거나 부팅음 음량을 변경할 때 2~3초정도 시스템 음량이 음소거 상태가 됩니다. 재생 중인 음량이나 영상이 있다면 잠시 음소거가 되어 소리가 들리지 않는게 일반적인 동작이나, 때때로 예상치 못한 버그로 2~3초동안 시스템 음량이 부팅음 음량 설정값대로 설정될 수도 있습니다. 해당 경우 재생 중인 음악이나 영상이 있다면 잠시 일시정지 후 설정하는 것을 권장드립니다.</p>
+</div>
+</div>
+</div>
+<div style="border-top: 1px solid #222226">
+<button type="button" class="faq-q" data-faq="4" aria-expanded="false" aria-controls="faq-a4" style="width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; padding: 0; border: 0; background: transparent; color: #f5f5f7; font-family: inherit; font-size: 17px; font-weight: 500; text-align: left; cursor: pointer"><span>어떤 Mac에서 되나요?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#86868e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; transition: transform .2s; transform: none"><path d="m6 9 6 6 6-6"></path></svg></button>
+<div class="faq-a" id="faq-a4" aria-hidden="true" style="display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .32s cubic-bezier(.2,.8,.2,1), opacity .24s ease">
+<div style="overflow: hidden; min-height: 0">
+<p style="margin: 0; padding-bottom: 24px; color: #a1a1a8">macOS 15 이상, Apple Silicon Mac에서 사용 가능합니다. Intel Mac이나 macOS 14 이하의 경우 작동 유무를 확인할 수 없습니다.</p>
+</div>
+</div>
+</div>
+<div style="border-top: 1px solid #222226; border-bottom: 1px solid #222226">
+<button type="button" class="faq-q" data-faq="5" aria-expanded="false" aria-controls="faq-a5" style="width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; padding: 0; border: 0; background: transparent; color: #f5f5f7; font-family: inherit; font-size: 17px; font-weight: 500; text-align: left; cursor: pointer"><span>앱을 지우려면 어떻게 하나요?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#86868e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; transition: transform .2s; transform: none"><path d="m6 9 6 6 6-6"></path></svg></button>
+<div class="faq-a" id="faq-a5" aria-hidden="true" style="display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .32s cubic-bezier(.2,.8,.2,1), opacity .24s ease">
+<div style="overflow: hidden; min-height: 0">
+<p style="margin: 0; padding-bottom: 24px; color: #a1a1a8">패널에서 '도우미 지우기'를 누른 뒤 앱을 종료하고 응용 프로그램 폴더에서 앱을 삭제하시면 됩니다.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section style="max-width: 1180px; margin: 0 auto; padding: 168px 24px 0; text-align: center">
+<h2 style="margin: 0; font-size: clamp(30px, 4vw, 52px); line-height: 1.2; font-weight: 700; letter-spacing: -0.03em">BootVolume 받기</h2>
+<div style="margin-top: 32px; display: flex; justify-content: center">
+<a href="https://github.com/gns13-space/BootVolume" style="display: inline-flex; align-items: center; gap: 8px; min-height: 52px; padding: 0 28px; border-radius: 999px; background: #f5f5f7; color: #000; font-weight: 700; font-size: 17px; text-decoration: none; box-sizing: border-box">GitHub에서 받기</a>
+</div>
+<p style="margin: 20px 0 0; font-size: 13px; color: #86868e">macOS 15 이상 · Apple Silicon Mac</p>
+</section>
+
+<footer style="max-width: 1180px; margin: 0 auto; padding: 120px 24px 48px; display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; font-size: 13px; color: #86868e"><span>BootVolume · MIT License · 지원 언어: 한국어,영어(예정)</span><a href="https://github.com/gns13-space/BootVolume" style="color: rgb(161, 161, 168)">github.com/gns13-space/BootVolume</a></footer>
+
+</div>
+<script>
+(function () {
+  var stage = document.getElementById('stage');
+  var pause = document.getElementById('pause');
+  if (pause && stage) pause.addEventListener('click', function () {
+    var p = stage.classList.toggle('paused');
+    pause.setAttribute('aria-label', p ? '재생' : '일시정지');
+    pause.querySelector('.ic-play').hidden = !p;
+    pause.querySelector('.ic-pause').hidden = p;
+  });
+  var qs = document.querySelectorAll('.faq-q');
+  function setOpen(q, open) {
+    var a = document.getElementById(q.getAttribute('aria-controls'));
+    q.setAttribute('aria-expanded', open ? 'true' : 'false');
+    var chev = q.querySelector('svg'); if (chev) chev.style.transform = open ? 'rotate(180deg)' : 'none';
+    a.style.gridTemplateRows = open ? '1fr' : '0fr';
+    a.style.opacity = open ? '1' : '0';
+    a.setAttribute('aria-hidden', open ? 'false' : 'true');
+  }
+  qs.forEach(function (q) {
+    q.addEventListener('click', function () {
+      var open = q.getAttribute('aria-expanded') !== 'true';
+      qs.forEach(function (o) { setOpen(o, false); });
+      if (open) setOpen(q, true);
+    });
+  });
+  var copy = document.getElementById('copy'); var timer;
+  var CMD = 'git clone https://github.com/gns13-space/BootVolume && cd BootVolume && ./build.sh';
+  function done(ok) {
+    copy.querySelector('.copy-label').textContent = ok ? '복사됨' : '복사하지 못했습니다';
+    copy.querySelector('.ic-copy').hidden = ok; copy.querySelector('.ic-done').hidden = !ok;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      copy.querySelector('.copy-label').textContent = '복사';
+      copy.querySelector('.ic-copy').hidden = false; copy.querySelector('.ic-done').hidden = true;
+    }, 2000);
+  }
+  function fallback() {
+    try { var t = document.createElement('textarea'); t.value = CMD; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+      document.body.appendChild(t); t.select(); var ok = document.execCommand('copy'); document.body.removeChild(t); done(ok); } catch (e) { done(false); }
+  }
+  if (copy) copy.addEventListener('click', function () {
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(CMD).then(function () { done(true); }, fallback);
+    else fallback();
+  });
+})();
+</script>
+</body>
+</html>
