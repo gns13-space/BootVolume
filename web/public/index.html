@@ -19,47 +19,9 @@ summary{list-style:none;cursor:pointer}
 summary::-webkit-details-marker{display:none}
 details[open] .chev{transform:rotate(180deg)}
 .scr{container-type:inline-size}
-.cam{transform-origin:0 0;animation:cam 18s infinite;animation-timing-function:cubic-bezier(.65,0,.35,1)}
-.cur{animation:cur 18s infinite;animation-timing-function:cubic-bezier(.45,0,.25,1)}
-.ico{animation:ico 18s infinite}
-.pnl{animation:pnl 18s infinite}
-.thm{animation:thm 18s infinite;animation-timing-function:cubic-bezier(.45,0,.25,1)}
-.fil{animation:fil 18s infinite;animation-timing-function:cubic-bezier(.45,0,.25,1)}
-.v50{animation:v50 18s infinite}.v65{animation:v65 18s infinite}.v80{animation:v80 18s infinite}
-.rp1{animation:rp1 18s infinite}.rp2{animation:rp2 18s infinite}
-.blk{animation:blk 18s infinite}
-.lgo{animation:lgo 18s infinite}
-.trk{animation:trk 18s infinite}
-.prg{animation:prg 18s infinite linear}
-.hud{animation:hud 18s infinite}
-.s1{animation:s1 18s infinite}.s2{animation:s2 18s infinite}.s3{animation:s3 18s infinite}.s4{animation:s4 18s infinite}
-.f1{animation:f1 18s infinite linear}.f2{animation:f2 18s infinite linear}.f3{animation:f3 18s infinite linear}.f4{animation:f4 18s infinite linear}
 .paused *{animation-play-state:paused !important}
-@keyframes cam{0%,4%{transform:translate(0,0) scale(1)}9%,11%{transform:translate(-94cqw,0) scale(2)}14.5%,30%{transform:translate(-108.4cqw,0) scale(2.2)}35.5%,85%{transform:translate(0,0) scale(1)}88.5%,95%{transform:translate(-80cqw,0) scale(1.8)}99%,100%{transform:translate(0,0) scale(1)}}
-@keyframes cur{0%{left:40cqw;top:36cqw;opacity:1}8%,10%{left:75.05cqw;top:1.3cqw}15%,16.5%{left:73.3cqw;top:15.2cqw}26%,30%{left:77.7cqw;top:15.2cqw}34%{left:66cqw;top:30cqw;opacity:1}39%{left:66cqw;top:30cqw;opacity:0}84%{left:60cqw;top:30cqw;opacity:0}87%{left:60cqw;top:30cqw;opacity:1}100%{left:40cqw;top:36cqw;opacity:1}}
-@keyframes ico{0%,9.8%{background:transparent}10%,36%{background:rgba(255,255,255,.22)}37.5%,100%{background:transparent}}
-@keyframes pnl{0%,10.3%{opacity:0;transform:translateY(-0.5cqw)}12.3%,35.5%{opacity:1;transform:none}37.5%,100%{opacity:0;transform:translateY(-0.5cqw)}}
-@keyframes thm{0%,17%{left:calc(47.4% - 0.65cqw)}26%,100%{left:calc(78.9% - 0.65cqw)}}
-@keyframes fil{0%,17%{width:47.4%}26%,100%{width:78.9%}}
-@keyframes v50{0%,19.5%{opacity:1}20%,100%{opacity:0}}
-@keyframes v65{0%,19.5%{opacity:0}20%,23.5%{opacity:1}24%,100%{opacity:0}}
-@keyframes v80{0%,23.5%{opacity:0}24%,100%{opacity:1}}
-@keyframes rp1{0%,9.9%{opacity:0;transform:scale(.3)}10%{opacity:.9;transform:scale(.3)}12.5%,100%{opacity:0;transform:scale(1.6)}}
-@keyframes rp2{0%,16.4%{opacity:0;transform:scale(.3)}16.5%{opacity:.9;transform:scale(.3)}19%,100%{opacity:0;transform:scale(1.6)}}
-@keyframes blk{0%,40%{opacity:0}45%,78%{opacity:1}83%,100%{opacity:0}}
-@keyframes lgo{0%,51%{opacity:0}53%,77%{opacity:1}79%,100%{opacity:0}}
-@keyframes trk{0%,56%{opacity:0}57%,77%{opacity:1}79%,100%{opacity:0}}
-@keyframes prg{0%,57%{width:0}76%,100%{width:100%}}
-@keyframes hud{0%,87%{opacity:0;transform:scale(.96)}89%,95%{opacity:1;transform:none}98%,100%{opacity:0;transform:scale(.96)}}
-@keyframes s1{0%,38.5%{color:#f5f5f7}39.5%,100%{color:#86868e}}
-@keyframes s2{0%,38.5%{color:#86868e}39.5%,50.5%{color:#f5f5f7}51.5%,100%{color:#86868e}}
-@keyframes s3{0%,50.5%{color:#86868e}51.5%,79.5%{color:#f5f5f7}80.5%,100%{color:#86868e}}
-@keyframes s4{0%,79.5%{color:#86868e}80.5%,99%{color:#f5f5f7}100%{color:#86868e}}
-@keyframes f1{0%{width:0}39%,100%{width:100%}}
-@keyframes f2{0%,39%{width:0}51%,100%{width:100%}}
-@keyframes f3{0%,51%{width:0}80%,100%{width:100%}}
-@keyframes f4{0%,80%{width:0}100%{width:100%}}
-@media (prefers-reduced-motion: reduce){.stage *{animation:none !important}.faq-a,.chev{transition:none !important}}
+.scr .still{display:none}
+@media (prefers-reduced-motion: reduce){.scr video{display:none}.scr .still{display:block}.faq-a,.chev{transition:none !important}}
 </style>
 <style>[hidden]{display:none !important}</style>
 </head>
@@ -96,88 +58,9 @@ GitHub에서 받기
 <div class="stage" id="stage" style="max-width: 1100px; margin: 0 auto">
 
 <div style="border-radius: 14px; box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 40px 100px rgba(0,0,0,.8)">
-<div class="scr" role="img" aria-label="화면이 커서를 따라 확대되며, 메뉴 막대의 BootVolume 패널에서 부팅음 음량을 80으로 정하고, Mac을 끈 뒤 켜면 Apple 로고가 뜨고, 로그인하면 음량 0 표시가 확대되는 장면" style="position: relative; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 14px; background: #252a33; font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; color: #f2f2f3">
-
-<div class="cam" aria-hidden="true" style="position: absolute; inset: 0">
-
-<div style="position: absolute; left: 0; right: 0; top: 0; height: 2.6cqw; background: rgba(0,0,0,.32); font-size: 1.15cqw; line-height: 2.6cqw">
-<svg style="position: absolute; left: 1.8cqw; top: 0.6cqw; width: 1.2cqw; height: 1.4cqw" viewBox="2 0 20 24" fill="#f2f2f3"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"></path></svg>
-<span style="position: absolute; left: 4.4cqw; font-weight: 700">Finder</span>
-<span style="position: absolute; left: 9.4cqw">파일</span>
-<span style="position: absolute; left: 12.8cqw">편집</span>
-<span style="position: absolute; left: 16.2cqw">보기</span>
-<span style="position: absolute; left: 19.6cqw">이동</span>
-<span style="position: absolute; left: 23cqw">윈도우</span>
-<span class="ico" style="position: absolute; left: 74cqw; top: 0.45cqw; width: 2.1cqw; height: 1.7cqw; border-radius: 0.4cqw; display: flex; align-items: center; justify-content: center">
-<img src="assets/bootvolume-icon.png" alt="" style="width: 1.54cqw; height: 1.15cqw; display: block">
-</span>
-<span style="position: absolute; right: 1.6cqw; top: 0; height: 2.6cqw; display: flex; align-items: center; gap: 1cqw">
-<img src="assets/wifi.png" alt="" style="width: 1.53cqw; height: 1.15cqw; display: block">
-<img src="assets/battery.png" alt="" style="width: 2.32cqw; height: 1.15cqw; display: block">
-<img src="assets/control-center.png" alt="" style="width: 1.29cqw; height: 1.2cqw; display: block">
-<span style="margin-left: 0.3cqw">11월 1일 (일) 오후 10:24</span>
-</span>
-</div>
-
-<div class="pnl" style="position: absolute; top: 3.2cqw; right: 14cqw; width: 28cqw; box-sizing: border-box; padding: 1.4cqw; border-radius: 1.3cqw; background: rgba(38,38,41,.97); box-shadow: inset 0 0 0 0.08cqw rgba(255,255,255,.12), 0 1.4cqw 3cqw rgba(0,0,0,.45); font-size: 1.15cqw; line-height: 1.4; display: flex; flex-direction: column; gap: 1cqw">
-<div style="height: 2cqw; display: flex; align-items: center; gap: 1cqw">
-<span style="font-weight: 700; font-size: 1.3cqw">BootVolume</span>
-<span style="flex: 1"></span>
-<svg style="width: 1.4cqw; height: 1.4cqw" viewBox="0 0 24 24" fill="none" stroke="#98989d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"></path></svg>
-<span style="position: relative; width: 2.6cqw; height: 1.5cqw; border-radius: 1cqw; background: #0a84ff"><span style="position: absolute; right: 0.15cqw; top: 0.15cqw; width: 1.2cqw; height: 1.2cqw; border-radius: 50%; background: #fff"></span></span>
-</div>
-<div style="height: 1.8cqw; display: flex; align-items: center; gap: 1cqw">
-<span style="width: 6.4cqw; flex: none">지금 음량</span>
-<span style="position: relative; flex: 1; height: 0.36cqw; border-radius: 1cqw; background: rgba(255,255,255,.18)"><span style="position: absolute; top: 50%; left: -0.65cqw; width: 1.3cqw; height: 1.3cqw; margin-top: -0.65cqw; border-radius: 50%; background: #e8e8ea"></span></span>
-<span style="width: 3cqw; flex: none; text-align: right; color: #98989d">0</span>
-</div>
-<div style="height: 0.1cqw; background: rgba(255,255,255,.12)"></div>
-<div style="height: 1.8cqw; display: flex; align-items: center; gap: 1cqw">
-<span style="width: 6.4cqw; flex: none">로그인 후</span>
-<span style="position: relative; flex: 1; height: 0.36cqw; border-radius: 1cqw; background: rgba(255,255,255,.18)"><span style="position: absolute; top: 50%; left: -0.65cqw; width: 1.3cqw; height: 1.3cqw; margin-top: -0.65cqw; border-radius: 50%; background: #e8e8ea"></span></span>
-<span style="width: 3cqw; flex: none; text-align: right; color: #98989d">0</span>
-</div>
-<div style="height: 1.8cqw; display: flex; align-items: center; gap: 1cqw">
-<span style="width: 6.4cqw; flex: none">부팅음</span>
-<span style="position: relative; flex: 1; height: 0.36cqw; border-radius: 1cqw; background: rgba(255,255,255,.18)">
-<span class="fil" style="position: absolute; left: 0; top: 0; bottom: 0; width: 78.9%; border-radius: 1cqw; background: #0a84ff"></span>
-<span class="thm" style="position: absolute; top: 50%; left: calc(78.9% - 0.65cqw); width: 1.3cqw; height: 1.3cqw; margin-top: -0.65cqw; border-radius: 50%; background: #e8e8ea; box-shadow: 0 0.1cqw 0.3cqw rgba(0,0,0,.5)"></span>
-</span>
-<span style="position: relative; width: 3cqw; height: 1.6cqw; flex: none; color: #98989d">
-<span class="v50" style="position: absolute; right: 0; top: 0; opacity: 0">50</span>
-<span class="v65" style="position: absolute; right: 0; top: 0; opacity: 0">65</span>
-<span class="v80" style="position: absolute; right: 0; top: 0">80</span>
-</span>
-</div>
-<div style="height: 0.1cqw; background: rgba(255,255,255,.12)"></div>
-<div style="display: flex; align-items: center; justify-content: space-between">부팅음 켜기<span style="position: relative; width: 2.6cqw; height: 1.5cqw; border-radius: 1cqw; background: #0a84ff"><span style="position: absolute; right: 0.15cqw; top: 0.15cqw; width: 1.2cqw; height: 1.2cqw; border-radius: 50%; background: #fff"></span></span></div>
-<div style="display: flex; align-items: center; justify-content: space-between">로그인 시 열기<span style="position: relative; width: 2.6cqw; height: 1.5cqw; border-radius: 1cqw; background: #0a84ff"><span style="position: absolute; right: 0.15cqw; top: 0.15cqw; width: 1.2cqw; height: 1.2cqw; border-radius: 50%; background: #fff"></span></span></div>
-<div style="display: flex; align-items: center; justify-content: space-between">끄기 전 음량으로 되돌리기<span style="position: relative; width: 2.6cqw; height: 1.5cqw; border-radius: 1cqw; background: rgba(255,255,255,.2)"><span style="position: absolute; left: 0.15cqw; top: 0.15cqw; width: 1.2cqw; height: 1.2cqw; border-radius: 50%; background: #fff"></span></span></div>
-<div style="height: 0.1cqw; background: rgba(255,255,255,.12)"></div>
-<div style="display: flex; flex-direction: column; gap: 0.3cqw; font-size: 1cqw; color: #98989d">
-<div style="display: flex; align-items: center; gap: 0.5cqw"><span style="flex: 1">도우미</span><span style="width: 0.7cqw; height: 0.7cqw; border-radius: 50%; background: #30d158"></span>정상</div>
-<div style="display: flex; justify-content: space-between"><span>마지막 로그인</span><span>오늘 오전 9:12</span></div>
-<div style="display: flex; justify-content: space-between"><span>마지막 끄기</span><span>어제 오후 11:40</span></div>
-</div>
-<div style="display: flex; align-items: center; justify-content: space-between; font-size: 1cqw">
-<span style="color: #4ea1ff">도우미 지우기</span>
-<span style="padding: 0.2cqw 0.9cqw; border-radius: 0.5cqw; background: rgba(255,255,255,.14)">종료</span>
-</div>
-</div>
-
-<img class="hud" src="assets/volume-hud.png" alt="" style="position: absolute; top: 3.2cqw; right: 1.2cqw; width: 24cqw; height: 5.24cqw; display: block; filter: drop-shadow(0 0.6cqw 1.6cqw rgba(0,0,0,.35)); opacity: 0">
-
-<span class="rp1" style="position: absolute; left: 73.55cqw; top: -0.2cqw; width: 3cqw; height: 3cqw; border-radius: 50%; border: 0.25cqw solid rgba(255,255,255,.85); box-sizing: border-box; opacity: 0"></span>
-<span class="rp2" style="position: absolute; left: 71.8cqw; top: 13.7cqw; width: 3cqw; height: 3cqw; border-radius: 50%; border: 0.25cqw solid rgba(255,255,255,.85); box-sizing: border-box; opacity: 0"></span>
-
-<svg class="cur" style="position: absolute; left: 77.7cqw; top: 15.2cqw; width: 1.8cqw; height: 2.7cqw; opacity: 0; filter: drop-shadow(0 0.15cqw 0.3cqw rgba(0,0,0,.45))" viewBox="0 0 14 21"><path d="M1 1v16l4-3.8 3 6.6 2.6-1.1-3-6.4H13z" fill="#000" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"></path></svg>
-
-</div>
-
-<div class="blk" aria-hidden="true" style="position: absolute; inset: 0; background: #000; opacity: 0"></div>
-<svg class="lgo" aria-hidden="true" style="position: absolute; left: 47.5cqw; top: 21.5cqw; width: 5cqw; height: 6cqw; opacity: 0" viewBox="2 0 20 24" fill="#f5f5f7"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"></path></svg>
-<div class="trk" aria-hidden="true" style="position: absolute; left: 43.5cqw; top: 34.5cqw; width: 13cqw; height: 0.35cqw; border-radius: 1cqw; background: #3a3a3c; overflow: hidden; opacity: 0"><div class="prg" style="width: 0; height: 100%; background: #f5f5f7; border-radius: 1cqw"></div></div>
-
+<div class="scr" role="img" aria-label="메뉴 막대의 BootVolume 아이콘을 눌러 패널을 열고 부팅음 음량을 60에서 80으로 바꾼 뒤, Mac을 끄고 켜면 Apple 로고가 뜨고, 로그인하면 음량 0이 표시되는 장면" style="position: relative; aspect-ratio: 1710 / 1107; overflow: hidden; border-radius: 14px; background: #000">
+<video src="assets/bootvolume-demo.mp4" poster="assets/demo-poster.jpg" muted playsinline autoplay loop preload="auto" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover"></video>
+<img class="still" src="assets/demo-still.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
 </div>
 </div>
 
@@ -362,10 +245,12 @@ GitHub에서 받기
   var pause = document.getElementById('pause');
   if (pause && stage) pause.addEventListener('click', function () {
     var p = stage.classList.toggle('paused');
+    var v = stage.querySelector('video'); if (v) { if (p) v.pause(); else v.play().catch(function () {}); }
     pause.setAttribute('aria-label', p ? '재생' : '일시정지');
     pause.querySelector('.ic-play').hidden = !p;
     pause.querySelector('.ic-pause').hidden = p;
   });
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { var rv = document.querySelector('.scr video'); if (rv) rv.pause(); }
   var qs = document.querySelectorAll('.faq-q');
   function setOpen(q, open) {
     var a = document.getElementById(q.getAttribute('aria-controls'));

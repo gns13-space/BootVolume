@@ -1,8 +1,9 @@
 # BootVolume 소개 페이지 — bootvolume.oodot.top
 # 배포: npx wrangler deploy --profile 8516   (이 폴더에서)
-# 정적 파일만 내보낸다(워커 코드 없음). public/index.html 은 디자인 캔버스(Studio.dc.html)를 변환한 것.
+# 정적 파일 + 영상 Range 처리(src/worker.js). public/index.html 은 디자인 캔버스(Studio.dc.html)를 변환한 것.
 name = "bootvolume"
 compatibility_date = "2026-10-01"
+main = "src/worker.js"
 
 routes = [
   { pattern = "bootvolume.oodot.top", custom_domain = true }
@@ -10,5 +11,7 @@ routes = [
 
 [assets]
 directory = "./public"
+binding = "ASSETS"
+run_worker_first = ["/assets/*.mp4"]
 html_handling = "auto-trailing-slash"
 not_found_handling = "single-page-application"
