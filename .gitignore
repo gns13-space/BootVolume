@@ -3,3 +3,7 @@
 *.xcodeproj/xcuserdata/
 .swiftpm/
 .wrangler/
+
+# 소개 영상 촬영·편집 도구와 녹화 영상(로컬 전용)
+tools/demo-video/
+recordings/
